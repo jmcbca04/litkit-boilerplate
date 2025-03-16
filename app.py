@@ -6,7 +6,7 @@ Demonstrates the UI components and features of the boilerplate.
 import streamlit as st
 
 from litkit.ui.theme import apply_theme
-from litkit.components import Header, Hero
+from litkit.components import Header, Hero, Features
 
 # Set page configuration
 st.set_page_config(
@@ -18,6 +18,42 @@ st.set_page_config(
 
 # Apply the LitKit theme
 apply_theme()
+
+# Fix for unwanted red blocks
+st.markdown("""
+<style>
+    /* Remove the unwanted red sections */
+    .stApp > header {
+        background-color: transparent !important;
+        height: 0 !important;
+    }
+    
+    /* Remove top padding */
+    .main .block-container {
+        padding-top: 1rem !important;
+    }
+    
+    /* Override default body background */
+    .stApp {
+        background-color: #0E1117 !important;
+    }
+    
+    /* Fix for the hero section */
+    .hero-section + div {
+        display: none !important;
+    }
+    
+    /* Override default Streamlit elements that might be causing red bars */
+    [data-testid="stAppViewBlockContainer"] > div:first-child {
+        background-color: transparent !important;
+    }
+    
+    /* Hide any top red banners */
+    .element-container:has(> div[class*="stMarkdown"]:first-child):first-child div {
+        background-color: transparent !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 
 def main():
@@ -60,50 +96,60 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
-    # Content below the hero
-    st.markdown('<h1 style="color: white;">Features</h1>', unsafe_allow_html=True)
-
-    # Feature columns
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown('<h3 style="color: white;">🔐 Authentication</h3>', unsafe_allow_html=True)
-        st.write("""
-        Secure user authentication with Supabase, including social 
-        login options. Easily manage user sessions and profiles.
-        """)
-
-        st.markdown('<h3 style="color: white;">🎨 UI Components</h3>', unsafe_allow_html=True)
-        st.write("""
-        Beautiful, responsive UI components designed specifically 
-        for Streamlit. Customizable and easy to use.
-        """)
-
-    with col2:
-        st.markdown('<h3 style="color: white;">💾 Database Integration</h3>', unsafe_allow_html=True)
-        st.write("""
-        Built-in Supabase database integration for storing and 
-        managing your data. Simple CRUD operations and data models.
-        """)
-
-        st.markdown('<h3 style="color: white;">💰 Payments</h3>', unsafe_allow_html=True)
-        st.write("""
-        Stripe integration for handling payments and subscriptions.
-        Coming soon!
-        """)
+    # Features component
+    features = Features(
+        title="Features",
+        features=[
+            {
+                "icon": "🔐",
+                "title": "Authentication",
+                "description": (
+                    "Secure user authentication with Supabase, including social "
+                    "login options. Easily manage user sessions and profiles."
+                ),
+            },
+            {
+                "icon": "🎨",
+                "title": "UI Components",
+                "description": (
+                    "Beautiful, responsive UI components designed specifically "
+                    "for Streamlit. Customizable and easy to use."
+                ),
+            },
+            {
+                "icon": "💾",
+                "title": "Database Integration",
+                "description": (
+                    "Built-in Supabase database integration for storing and "
+                    "managing your data. Simple CRUD operations and data models."
+                ),
+            },
+            {
+                "icon": "💰",
+                "title": "Payments",
+                "description": (
+                    "Stripe integration for handling payments and subscriptions. "
+                    "Coming soon!"
+                ),
+            },
+        ],
+    )
+    features.render()
 
     # Component showcase
-    st.markdown('<h2 style="color: white;">Component Showcase</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="color: white;">Component Showcase</h2>',
+                unsafe_allow_html=True)
     st.write(
         "LitKit includes a variety of UI components to help you build "
         "beautiful Streamlit apps quickly."
     )
 
-    st.markdown('<h3 style="color: white;">Current Components</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color: white;">Current Components</h3>',
+                unsafe_allow_html=True)
     components = [
         "✅ Header/Navigation",
         "✅ Hero Section",
-        "⏳ Feature Sections",
+        "✅ Feature Sections",
         "⏳ Pricing Tables",
         "⏳ FAQ Component",
         "⏳ Testimonials",
