@@ -7,10 +7,10 @@ This document tracks the progress of LitKit development across all project phase
 ### 1. Project Setup
 
 - [x] Initialize GitHub repository
-- [ ] Create basic project structure
-- [ ] Set up virtual environment
-- [ ] Install core dependencies (streamlit, etc.)
-- [ ] Create initial README.md
+- [x] Create basic project structure
+- [x] Set up virtual environment
+- [x] Install core dependencies (streamlit, etc.)
+- [x] Create initial README.md
 
 ### 2. Supabase Authentication
 
