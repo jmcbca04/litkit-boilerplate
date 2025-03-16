@@ -12,7 +12,18 @@ This document tracks the progress of LitKit development across all project phase
 - [x] Install core dependencies (streamlit, etc.)
 - [x] Create initial README.md
 
-### 2. Supabase Authentication
+### 2. Core UI Components
+
+- [x] Create component library framework
+- [x] Implement header/navigation component
+- [x] Implement hero section component
+- [ ] Implement feature sections
+- [ ] Implement pricing tables
+- [ ] Implement FAQ component
+- [ ] Implement testimonials
+- [ ] Implement footer component
+
+### 3. Supabase Authentication
 
 - [ ] Set up Supabase project
 - [ ] Implement Google OAuth
@@ -21,24 +32,13 @@ This document tracks the progress of LitKit development across all project phase
 - [ ] Implement session management
 - [ ] Create user profile section
 
-### 3. Database Integration
+### 4. Database Integration
 
 - [ ] Set up Supabase tables
 - [ ] Create database models
 - [ ] Implement CRUD operations
 - [ ] Set up data caching
 - [ ] Create database documentation
-
-### 4. Core UI Components
-
-- [ ] Create component library framework
-- [ ] Implement header/navigation component
-- [ ] Implement hero section component
-- [ ] Implement feature sections
-- [ ] Implement pricing tables
-- [ ] Implement FAQ component
-- [ ] Implement testimonials
-- [ ] Implement footer component
 
 ### 5. Error Handling & Logging
 
