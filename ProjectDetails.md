@@ -26,8 +26,6 @@ LitKit is a comprehensive boilerplate for Streamlit applications. The product en
 
 - **Analytics & Tracking**
 
-  - 
-
 - **Private Pages**
   - Role-based access control
   - Content restriction options
@@ -40,8 +38,7 @@ LitKit is a comprehensive boilerplate for Streamlit applications. The product en
 
   - Header/Navigation
   - Hero Section
-  - Features Grid/Listicle
-  - Features Accordion
+  - Features List
   - Pricing Tables
   - FAQ Sections
   - Testimonials (Single, Triple, Grid)
@@ -107,7 +104,6 @@ litkit-boilerplate/
 ├── litkit/                     # Core package
 │   ├── auth/                   # Authentication functions
 │   ├── payments/               # Stripe integration
-│   ├── email/                  # Email service
 │   ├── database/               # Database connectors
 │   ├── analytics/              # Analytics tools
 │   └── ui/                     # UI components

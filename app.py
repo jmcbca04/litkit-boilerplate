@@ -1,165 +1,247 @@
 """
-LitKit main application.
-Demonstrates the UI components and features of the boilerplate.
+Simple Streamlit Hello World application.
 """
 
 import streamlit as st
+import base64
+import os
 
-from litkit.ui.theme import apply_theme
-from litkit.components import Header, Hero, Features
 
-# Set page configuration
-st.set_page_config(
-    page_title="LitKit Boilerplate",
-    page_icon="🔥",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Apply the LitKit theme
-apply_theme()
-
-# Fix for unwanted red blocks
-st.markdown("""
-<style>
-    /* Remove the unwanted red sections */
-    .stApp > header {
-        background-color: transparent !important;
-        height: 0 !important;
-    }
-    
-    /* Remove top padding */
-    .main .block-container {
-        padding-top: 1rem !important;
-    }
-    
-    /* Override default body background */
-    .stApp {
-        background-color: #0E1117 !important;
-    }
-    
-    /* Fix for the hero section */
-    .hero-section + div {
-        display: none !important;
-    }
-    
-    /* Override default Streamlit elements that might be causing red bars */
-    [data-testid="stAppViewBlockContainer"] > div:first-child {
-        background-color: transparent !important;
-    }
-    
-    /* Hide any top red banners */
-    .element-container:has(> div[class*="stMarkdown"]:first-child):first-child div {
-        background-color: transparent !important;
-    }
-</style>
-""", unsafe_allow_html=True)
+def get_base64_of_image(image_file):
+    """Get the base64 string of an image file."""
+    with open(image_file, "rb") as f:
+        data = f.read()
+        return base64.b64encode(data).decode()
 
 
 def main():
-    """Main application entry point."""
-    # Header component
-    header = Header(
-        title="LitKit",
-        logo_url=(
-            "https://cdn-icons-png.flaticon.com/512/785/785116.png"  # Fire icon
-        ),
-        nav_items=[
-            {"label": "Home", "url": "#"},
-            {"label": "Features", "url": "#features"},
-            {"label": "Pricing", "url": "#pricing"},
-            {"label": "Documentation", "url": "#docs"},
-        ],
-    )
-    header.render()
-
-    # Hero component
-    hero = Hero(
-        heading="Build Streamlit Apps Faster",
-        subheading=(
-            "The comprehensive boilerplate for Streamlit applications with "
-            "authentication, payments, UI components, and more."
-        ),
-        background_color="#FF4B4B",
-    )
-    hero.render()
-
-    # Force white text in hero section with direct CSS injection
-    st.markdown("""
-    <style>
-    .stMarkdown h1, 
-    .stMarkdown p, 
-    .stMarkdown div[data-testid="stMarkdownContainer"] p,
-    .stMarkdown div[data-testid="stMarkdownContainer"] h1 {
-        color: white !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    # Features component
-    features = Features(
-        title="Features",
-        features=[
-            {
-                "icon": "🔐",
-                "title": "Authentication",
-                "description": (
-                    "Secure user authentication with Supabase, including social "
-                    "login options. Easily manage user sessions and profiles."
-                ),
-            },
-            {
-                "icon": "🎨",
-                "title": "UI Components",
-                "description": (
-                    "Beautiful, responsive UI components designed specifically "
-                    "for Streamlit. Customizable and easy to use."
-                ),
-            },
-            {
-                "icon": "💾",
-                "title": "Database Integration",
-                "description": (
-                    "Built-in Supabase database integration for storing and "
-                    "managing your data. Simple CRUD operations and data models."
-                ),
-            },
-            {
-                "icon": "💰",
-                "title": "Payments",
-                "description": (
-                    "Stripe integration for handling payments and subscriptions. "
-                    "Coming soon!"
-                ),
-            },
-        ],
-    )
-    features.render()
-
-    # Component showcase
-    st.markdown('<h2 style="color: white;">Component Showcase</h2>',
-                unsafe_allow_html=True)
-    st.write(
-        "LitKit includes a variety of UI components to help you build "
-        "beautiful Streamlit apps quickly."
+    """Main application function."""
+    # Header
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>LitKit 🔥</h1>
+        """,
+        unsafe_allow_html=True
     )
 
-    st.markdown('<h3 style="color: white;">Current Components</h3>',
-                unsafe_allow_html=True)
-    components = [
-        "✅ Header/Navigation",
-        "✅ Hero Section",
-        "✅ Feature Sections",
-        "⏳ Pricing Tables",
-        "⏳ FAQ Component",
-        "⏳ Testimonials",
-        "⏳ Footer",
+    # Hero Section with Background Image
+    img_path = "litkit-hero.jpg"
+    if os.path.exists(img_path):
+        img_base64 = get_base64_of_image(img_path)
+        hero_style = f"""
+        <style>
+        .hero {{
+            background-image: url('data:image/jpg;base64,{img_base64}');
+            background-size: cover;
+            background-position: center;
+            padding: 80px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }}
+        </style>
+        """
+    else:
+        hero_style = """
+        <style>
+        .hero {
+            background-color: #1E3A8A;
+            padding: 80px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        </style>
+        """
+
+    st.markdown(
+        hero_style + """
+        <div class="hero">
+            <h1>The Ultimate Streamlit Boilerplate</h1>
+            <h3>The comprehensive boilerplate for Streamlit applications with
+            authentication, payments, UI components, and more.</h3>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Call to Action (CTA)
+    st.button("Get Started")
+
+    # Features Section
+    st.markdown("## Key Features")
+
+    # Define features as a list of dictionaries
+    auth_desc_pt1 = ("Secure user authentication with Supabase, "
+                     "including")
+    auth_desc_pt2 = ("social login options. Easily manage user "
+                     "sessions and profiles.")
+
+    db_desc_pt1 = ("Built-in Supabase database integration for "
+                   "storing and")
+    db_desc_pt2 = ("managing your data. Simple CRUD operations "
+                   "and data models.")
+
+    payment_desc = "Stripe integration for payments and subscriptions."
+
+    private_desc = "Role-based access control and content restriction options."
+
+    features = [
+        {
+            "title": "🔐 Authentication",
+            "description": f"{auth_desc_pt1} {auth_desc_pt2}"
+        },
+        {
+            "title": "💾 Database Integration",
+            "description": f"{db_desc_pt1} {db_desc_pt2}"
+        },
+        {
+            "title": "🔒 Private Pages",
+            "description": private_desc
+        },
+        {
+            "title": "💰 Payments",
+            "description": payment_desc
+        }
     ]
 
-    for component in components:
-        st.markdown(component)
+    # Display features
+    for feature in features:
+        st.subheader(feature["title"])
+        st.write(feature["description"])
+        st.markdown("---")  # Divider line
 
-    st.info("More components will be added in future updates!")
+    # Pricing Section
+    st.header("Pricing Plans")
+
+    # Define pricing plans
+    plans = [
+        {
+            "name": "Starter",
+            "price": "$20",
+            "features": [
+                "Basic UI components",
+                "Documentation access",
+                "Community support",
+                "1 project"
+            ]
+        },
+        {
+            "name": "Pro",
+            "price": "$35",
+            "features": [
+                "All UI components",
+                "Authentication included",
+                "Database integration",
+                "Email support",
+                "Unlimited projects"
+            ]
+        },
+        {
+            "name": "Premium",
+            "price": "$70",
+            "features": [
+                "All Standard features",
+                "Payment processing",
+                "Lifetime updates"
+            ]
+        },
+    ]
+
+    # Display pricing plans
+    cols = st.columns(len(plans))
+    for col, plan in zip(cols, plans):
+        with col:
+            st.subheader(plan["name"])
+            st.markdown(f"{plan['price']}")
+            for feature in plan["features"]:
+                st.write(f"- {feature}")
+            st.button(f"Select {plan['name']}", key=plan["name"])
+
+    # FAQ Section
+    st.markdown("<br>", unsafe_allow_html=True)  # Add some space
+    st.header("Frequently Asked Questions")
+
+    # Define FAQs as a list of dictionaries
+    faqs = [
+        {
+            "question": "What is LitKit?",
+            "answer": "LitKit is a comprehensive boilerplate for Streamlit applications with built-in authentication, database integration, payment processing, and more. It helps you build professional web apps quickly without starting from scratch."
+        },
+        {
+            "question": "How do I get started with LitKit?",
+            "answer": "Simply clone the repository, install the requirements with `pip install -r requirements.txt`, and run the app with `streamlit run app.py`. Detailed documentation is available in the GitHub repository."
+        },
+        {
+            "question": "Does LitKit work with Streamlit 1.43?",
+            "answer": "Yes! LitKit is built with Streamlit 1.43 and takes advantage of all the latest features, including improvements to dataframes, timezone handling, and more."
+        },
+        {
+            "question": "Is LitKit suitable for commercial projects?",
+            "answer": "Absolutely. LitKit is designed for both personal and commercial use. The pricing plans reflect the level of support and features available for each tier."
+        },
+        {
+            "question": "Can I customize LitKit to fit my needs?",
+            "answer": "Yes, LitKit is fully customizable. You can modify any part of the codebase to suit your specific requirements, or use it as a foundation to build upon."
+        },
+    ]
+
+    # Display FAQs using expander
+    for faq in faqs:
+        with st.expander(faq["question"]):
+            st.write(faq["answer"])
+
+    # Testimonial Section
+    st.markdown("<br>", unsafe_allow_html=True)  # Add some space
+    st.header("What Our Users Say")
+
+    # Define testimonials as a list of dictionaries
+    testimonials = [
+        {
+            "name": "Sarah Chen",
+            "role": "Data Scientist",
+            "company": "Analytics Pro",
+            "testimonial": ("LitKit has revolutionized how we create data apps. "
+                            "What used to take weeks now takes days.")
+        },
+        {
+            "name": "Marcus Johnson",
+            "role": "Machine Learning Engineer",
+            "company": "TechSolutions",
+            "testimonial": ("The pre-built components and integrations have "
+                            "significantly accelerated our development process.")
+        },
+        {
+            "name": "Priya Sharma",
+            "role": "Product Manager",
+            "company": "DataViz Inc",
+            "testimonial": ("An essential tool for anyone building data apps. "
+                            "The ROI has been incredible for our team.")
+        }
+    ]
+
+    # Display testimonials
+    cols = st.columns(len(testimonials))
+    for col, testimonial in zip(cols, testimonials):
+        with col:
+            st.markdown("❝")
+            st.markdown(f"*\"{testimonial['testimonial']}\"*")
+            st.markdown(f"**{testimonial['name']}**")
+            st.caption(f"{testimonial['role']} at {testimonial['company']}")
+
+    # Footer
+    st.markdown(
+        """
+        <hr>
+        <p style='text-align: center;'>
+        🚀 Made with Streamlit
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 if __name__ == "__main__":

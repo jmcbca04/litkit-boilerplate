@@ -14,14 +14,14 @@ This document tracks the progress of LitKit development across all project phase
 
 ### 2. Core UI Components
 
-- [x] Create component library framework
+- [ ] Create component library framework
 - [x] Implement header/navigation component
 - [x] Implement hero section component
 - [x] Implement feature sections
-- [ ] Implement pricing tables
-- [ ] Implement FAQ component
-- [ ] Implement testimonials
-- [ ] Implement footer component
+- [x] Implement pricing tables
+- [x] Implement FAQ component
+- [x] Implement testimonials
+- [x] Implement footer component
 
 ### 3. Supabase Authentication
 
