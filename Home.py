@@ -75,19 +75,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Quick Navigation Section
-    st.subheader("📋 Quick Navigation")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.page_link("pages/Auth_Example.py", label="🔐 Authentication Example",
-                     help="See how authentication works in LitKit")
-    with col2:
-        st.page_link("pages/Private_Page.py", label="🔒 Private Page Example",
-                     help="See how protected content works in LitKit")
-
     st.markdown("---")
-
     # Features Section
     st.markdown("## Key Features")
 
@@ -198,7 +186,7 @@ def main():
         },
         {
             "question": "How do I get started with LitKit?",
-            "answer": "Simply clone the repository, install the requirements with `pip install -r requirements.txt`, and run the app with `streamlit run app.py`. Detailed documentation is available in the GitHub repository."
+            "answer": "Simply clone the repository, install the requirements with `pip install -r requirements.txt`, and run the app with `streamlit run Home.py`. Detailed documentation is available in the GitHub repository."
         },
         {
             "question": "Does LitKit work with Streamlit 1.43?",
