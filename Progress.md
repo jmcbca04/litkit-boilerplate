@@ -51,7 +51,7 @@ This document tracks the progress of LitKit development across all project phase
 
 - [x] Create landing page example
 - [ ] Build SaaS dashboard example
-- [ ] Develop user profile example
+- [x] Develop user profile example
 - [x] Create settings page example
 
 ## Phase 3: Payment Integration

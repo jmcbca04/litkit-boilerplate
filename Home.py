@@ -111,7 +111,13 @@ def main():
         },
         {
             "title": "💰 Payments",
-            "description": payment_desc
+            "description": payment_desc,
+            "link": "pages/Subscription_Example.py"
+        },
+        {
+            "title": "👤 User Profile",
+            "description": "Complete user profile page with account settings, activity tracking, and preferences.",
+            "link": "pages/Profile_Page_Example.py"
         }
     ]
 
