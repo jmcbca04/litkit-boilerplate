@@ -1,5 +1,7 @@
 # 🔥 LitKit - The Ultimate Streamlit Boilerplate
 
+This is free to use - if you'd like to support my work, feel free to donate here: https://buy.stripe.com/6oEaGmfR07bCdsQaEE
+
 LitKit is a comprehensive boilerplate for Streamlit applications. It enables users to build and launch Streamlit apps quickly with pre-built functionalities like authentication, payments, and UI components.
 
 ## Features
