@@ -4,7 +4,8 @@ Simple Streamlit Hello World application.
 
 import streamlit as st
 import base64
-import os
+# Import os if you uncomment the image code below
+# import os
 
 
 def get_base64_of_image(image_file):
@@ -31,49 +32,33 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Hero Section with Background Image
-    img_path = "litkit-hero.jpg"
-    if os.path.exists(img_path):
-        img_base64 = get_base64_of_image(img_path)
-        hero_style = f"""
-        <style>
-        .hero {{
-            background-image: url('data:image/jpg;base64,{img_base64}');
-            background-size: cover;
-            background-position: center;
-            padding: 80px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }}
-        </style>
-        """
-    else:
-        hero_style = """
-        <style>
-        .hero {
-            background-color: #1E3A8A;
-            padding: 80px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-        </style>
-        """
+    # Hero Section
+    # To add a background image or styling:
+    # 1. Add your image file to the project directory
+    # 2. Modify the CSS below to add your custom styling
 
-    st.markdown(
-        hero_style + """
-        <div class="hero">
-            <h1>The Ultimate Streamlit Boilerplate</h1>
-            <h3>The comprehensive boilerplate for Streamlit applications with
-            authentication, payments, UI components, and more.</h3>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Create a container with custom styling for the hero section
+    with st.container():
+        # Apply styling to the container
+        st.markdown(
+            """
+            <style>
+            [data-testid="stVerticalBlock"] > div:first-child {
+                padding: 3rem;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Hero content using native Streamlit components
+        st.title("The Ultimate Streamlit Boilerplate")
+        st.subheader(
+            "The comprehensive boilerplate for Streamlit applications with "
+            "authentication, payments, UI components, and more."
+        )
 
     st.markdown("---")
     # Features Section
@@ -256,7 +241,7 @@ def main():
         """
         <hr>
         <p style='text-align: center;'>
-        🚀 Made with Streamlit
+        🔥 Made with Streamlit
         </p>
         """,
         unsafe_allow_html=True
